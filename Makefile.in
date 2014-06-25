@@ -240,7 +240,8 @@ package390: $(OUTTMPDIR)/icudata390.lst $(PKGDATA_LIST) ./icupkg.inc packagedata
 #  2010-dec Removed pnames.icu.
 # These are now hardcoded in ICU4C and only loaded in ICU4J.
 #
-DAT_FILES_SHORT=unames.icu cnvalias.icu coll/ucadata.icu coll/invuca.icu nfc.nrm nfkc.nrm nfkc_cf.nrm uts46.nrm
+DAT_FILES_SHORT=cnvalias.icu
+#unames.icu cnvalias.icu coll/ucadata.icu coll/invuca.icu nfc.nrm nfkc.nrm nfkc_cf.nrm uts46.nrm
 DAT_FILES=$(DAT_FILES_SHORT:%=$(BUILDDIR)/%)
 
 ## BRK files
@@ -262,16 +263,18 @@ INSTALLED_BRS_FILES = $(BRK_RES_SOURCE:%.txt=%)  $(BRK_RES_SOURCE_LOCAL:%.txt=%)
 endif
 
 ## Confusables (Spoofing) files
-ALL_CFU_SOURCE=$(UNICODEDATADIR)/confusables.txt $(UNICODEDATADIR)/confusablesWholeScript.txt
-CFU_FILES_SHORT=confusables.cfu
+ALL_CFU_SOURCE=
+#$(UNICODEDATADIR)/confusables.txt $(UNICODEDATADIR)/confusablesWholeScript.txt
+CFU_FILES_SHORT=
+#confusables.cfu
 CFU_FILES=$(BUILDDIR)/$(CFU_FILES_SHORT)
 
 ## UCM files
 -include $(UCMSRCDIR)/ucmcore.mk
 -include $(UCMSRCDIR)/ucmfiles.mk
 -include $(UCMSRCDIR)/ucmebcdic.mk
--include $(UCMSRCDIR)/ucmlocal.mk
 ALL_UCM_SOURCE=ibm-37_P100-1995.ucm ibm-1047_P100-1995.ucm $(UCM_SOURCE_CORE) $(UCM_SOURCE_FILES) $(UCM_SOURCE_EBCDIC) $(UCM_SOURCE_LOCAL)
+-include $(UCMSRCDIR)/ucmlocal.mk
 UCM_FILES = $(ALL_UCM_SOURCE:%=$(SRCDATADIR)/%)
 CNV_FILES = $(ALL_UCM_SOURCE:%.ucm=$(BUILDDIR)/%.cnv)
 CNV_FILES_SHORT = $(ALL_UCM_SOURCE:%.ucm=%.cnv)
